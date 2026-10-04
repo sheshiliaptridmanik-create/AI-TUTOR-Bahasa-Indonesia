@@ -1,0 +1,36 @@
+================================================================================
+KAIDAH KEBAHASAAN TEKS PROSEDUR KOMPLEKS
+================================================================================
+
+Dalam menyusun atau menganalisis teks prosedur kompleks, terdapat kaidah 
+kebahasaan utama yang digunakan:
+
+1. VERBA IMPERATIF (Kata Kerja Perintah)
+   Kata kerja yang mengandung perintah, imbauan, atau larangan.
+   Ditandai dengan akhiran -kan, -i, dan partikel -lah.
+   * Contoh: Isilah, unggahlah, pastikan, lampirkan, tekan.
+
+2. VERBA MATERIAL DAN VERBA TINGKAH LAKU
+   * Verba Material: Kata kerja yang mengacu pada tindakan fisik yang nyata.
+     Contoh: Mengetik, menyerahkan, mengunduh, membawa.
+   * Verba Tingkah Laku: Kata kerja yang mengacu pada sikap/respon mental.
+     Contoh: Menyetujui, menerima, memahami, menolak.
+
+3. KONJUNGSI TEMPORAL (Urutan Waktu)
+   Kata hubung yang mengurutkan kronologi kegiatan dari satu tahap ke tahap berikutnya.
+   * Contoh: Pertama, kemudian, selanjutnya, setelah itu, lalu, terakhir.
+
+4. KALIMAT BERSYARAT (Konjungsi Syarat)
+   Kata hubung yang menunjukkan hubungan syarat pada alur percabangan prosedur.
+   * Contoh: Jika, apabila, bilamana, seandainya, jika tidak.
+
+5. KALIMAT DEKLARATIF DAN INTEROGATIF
+   * Kalimat Deklaratif (Pernyataan): Memberikan informasi atau fakta.
+     Contoh: Berkas yang diunggah harus berformat PDF.
+   * Kalimat Interogatif (Pertanyaan): Digunakan untuk konfirmasi/arahan.
+     Contoh: Apakah Anda sudah memiliki akun pendaftaran?
+
+6. KATA KUANTITATIF / PENANDA URUTAN
+   Penggunaan penomoran atau angka kuantitatif untuk memperjelas urutan kerja.
+   * Contoh: 1, 2, 3... atau Pertama, Kedua, Ketiga...
+================================================================================
