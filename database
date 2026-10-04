@@ -1,0 +1,31 @@
+FOLDER_DATABASE = "database"
+
+FOLDER_MATERI = os.path.join(
+    FOLDER_DATABASE,
+    "materi"
+)
+
+FOLDER_PERANGKAT = os.path.join(
+    FOLDER_DATABASE,
+    "perangkat"
+)
+
+FOLDER_LATIHAN = os.path.join(
+    FOLDER_DATABASE,
+    "latihan"
+)
+
+FOLDER_REMEDIAL = os.path.join(
+    FOLDER_DATABASE,
+    "remedial"
+)
+
+FOLDER_PENGAYAAN = os.path.join(
+    FOLDER_DATABASE,
+    "pengayaan"
+)
+
+FOLDER_HASIL = os.path.join(
+    FOLDER_DATABASE,
+    "hasil_siswa"
+)
