@@ -1,0 +1,27 @@
+================================================================================
+CIRI-CIRI TEKS PROSEDUR KOMPLEKS
+================================================================================
+
+Teks Prosedur Kompleks memiliki karakteristik khas yang membedakannya dari 
+jenis teks prosedur lainnya, yaitu:
+
+1. Memiliki Sub-Langkah (Berjenjang)
+   Setiap langkah utama biasanya memiliki tingkat anak langkah (1.1, 1.2, a, b) 
+   yang rinciannya harus diikuti secara berurutan.
+
+2. Memiliki Percabangan Logika (Kondisi Bersyarat)
+   Terdapat alur alur pilihan (jika-maka / if-then statement). Apabila suatu 
+   persyaratan tidak terpenuhi, teks memberikan opsi atau alur alternatif.
+
+3. Informasi Disajikan Secara Runtut dan Kronologis
+   Langkah-langkah disusun secara sistematis sehingga pembaca tidak keliru 
+   dalam mengeksekusi tahapan.
+
+4. Bersifat Objektif dan Informatif
+   Petunjuk disampaikan secara jelas, lugas, akurat, serta bertujuan membantu 
+   pembaca mencapai tujuan yang diinginkan.
+
+5. Menggunakan Penomoran atau Penandaan Berhierarki
+   Penggunaan sistem nomor, abjad, atau poin untuk memisahkan tingkatan aksi 
+   dari tingkat umum ke tingkat khusus.
+================================================================================

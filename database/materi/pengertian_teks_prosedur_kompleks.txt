@@ -1,0 +1,21 @@
+================================================================================
+PENGERTIAN TEKS PROSEDUR KOMPLEKS
+================================================================================
+
+Teks Prosedur Kompleks adalah jenis teks yang menjelaskan langkah-langkah atau
+tahap-tahap secara runtut, rinci, dan terstruktur untuk melakukan suatu
+aktivitas, menyelesaikan masalah, atau membuat sesuatu.
+
+Secara konseptual, teks prosedur kompleks berbeda dari teks prosedur sederhana. 
+Pada teks prosedur kompleks, tahapan yang harus dilalui bersifat berjenjang 
+serta memiliki banyak anak langkah (sub-langkah) dan percabangan kondisi.
+
+Teks ini umumnya digunakan dalam ranah administratif, hukum, operasional alat 
+atau sistem yang rumit, serta petunjuk teknis instansi resmi.
+
+Contoh penerapan teks prosedur kompleks:
+1. Prosedur pembuatan Surat Izin Mengemudi (SIM).
+2. Prosedur pendaftaran UTBK-SNBT atau seleksi masuk perguruan tinggi.
+3. Prosedur pengurusan paspor dan visa.
+4. Prosedur klaim asuransi kesehatan atau ketenagakerjaan.
+================================================================================
