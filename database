@@ -1,3 +1,11 @@
+database/
+├── materi/
+├── perangkat/
+├── latihan/
+├── remedial/
+├── pengayaan/
+└── hasil_siswa/
+
 FOLDER_DATABASE = "database"
 
 FOLDER_MATERI = os.path.join(
@@ -24,6 +32,8 @@ FOLDER_PENGAYAAN = os.path.join(
     FOLDER_DATABASE,
     "pengayaan"
 )
+
+
 
 FOLDER_HASIL = os.path.join(
     FOLDER_DATABASE,
