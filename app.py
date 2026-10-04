@@ -40,32 +40,6 @@ FILE_CONFIG = os.path.join(
     "pembelajaran.json"
 )
 
-
-# =========================================================
-# MEMBUAT FOLDER OTOMATIS
-# =========================================================
-
-def buat_folder():
-
-    folder_list = [
-        FOLDER_MATERI,
-        FOLDER_PERANGKAT,
-        FOLDER_LATIHAN,
-        FOLDER_REMEDIAL,
-        FOLDER_PENGAYAAN,
-        FOLDER_HASIL,
-        "config",
-        os.path.join("assets", "gambar"),
-        os.path.join("assets", "logo")
-    ]
-
-    for folder in folder_list:
-        os.makedirs(folder, exist_ok=True)
-
-
-buat_folder()
-
-
 # =========================================================
 # SESSION STATE
 # =========================================================
