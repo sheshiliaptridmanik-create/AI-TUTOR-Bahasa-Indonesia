@@ -233,7 +233,6 @@ def inject_css():
             background: rgba(255,255,255,.67);
         }
         .footer-note {
-            text-align: center;
             color: #94a3b8;
             font-size: .78rem;
             padding: 24px 0 6px;
@@ -289,10 +288,6 @@ def buat_folder():
         FOLDER_VIDEO,
         FOLDER_MEDIA,
     ]:
-        os.makedirs(folder, exist_ok=True)
-
-
-buat_folder()
 
 DEFAULT_STATE = {
     "mode": None,
