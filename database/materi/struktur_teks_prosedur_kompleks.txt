@@ -1,0 +1,25 @@
+
+STRUKTUR TEKS PROSEDUR KOMPLEKS
+
+
+Struktur teks prosedur kompleks terdiri atas tiga bagian utama yang disusun 
+secara sistematis:
+
+1. TUJUAN (Goal / Aim)
+   * Terletak di bagian awal/pembuka teks.
+   * Berisi gambaran umum mengenai apa yang akan dicapai atau dilakukan.
+   * Menjelaskan maksud dan manfaat dari pelaksanaan prosedur tersebut.
+
+2. MATERIAL / PERSYARATAN (Tools / Materials / Requirements)
+   * Berisi daftar alat, bahan, atau berkas/dokumen administrasi yang wajib 
+     dipersiapkan sebelum masuk ke tahap pelaksanaan.
+   * Catatan: Bagian ini opsional tergantung konteks, tetapi pada prosedur 
+     kompleks resmi (seperti administrasi negara/kampus), bagian syarat berkas 
+     hampir selalu ada.
+
+3. LANGKAH-LANGKAH (Steps)
+   * Berisi tahapan-tahapan aksi yang disusun secara urut dan kronologis.
+   * Memuat penomoran berjenjang (sub-langkah) untuk memperjelas tata cara.
+   * Memuat kalimat bersyarat untuk mengarahkan pengguna apabila terjadi 
+     kendala atau perbedaan situasi pada salah satu tahapan.
+================================================================================
