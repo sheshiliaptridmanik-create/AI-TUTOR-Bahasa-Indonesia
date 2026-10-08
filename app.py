@@ -282,53 +282,17 @@ def buat_folder():
         FOLDER_PERANGKAT,
         FOLDER_LATIHAN,
         FOLDER_REMEDIAL,
-        FOLDER_PENGAYAAN
+        FOLDER_PENGAYAAN,
+        FOLDER_HASIL,
+        FOLDER_CONFIG,
+        FOLDER_GAMBAR,
+        FOLDER_VIDEO,
+        FOLDER_MEDIA,
     ]:
-
-    # Periksa seluruh bagian path sebelum membuat folder.
-    # Contoh: jika "database" ternyata file, aplikasi akan langsung
-    # memberi tahu bahwa database yang bentrok, bukan hanya subfoldernya.
-    for folder in folder_list:
-        normalized = os.path.normpath(folder)
-        current = ""
-
-        for part in normalized.split(os.sep):
-            if not part:
-                continue
-
-            current = part if not current else os.path.join(current, part)
-
-            if os.path.isfile(current):
-                st.error(
-                    "🚫 **Struktur folder GitHub tidak sesuai.**\n\n"
-                    f"Program membutuhkan **folder `{current}`**, tetapi item tersebut saat ini merupakan **file**.\n\n"
-                    "### Yang harus diperbaiki di GitHub\n"
-                    f"Hapus atau pindahkan file **`{current}`**, lalu pastikan `{current}` dibuat sebagai folder.\n\n"
-                    "Setelah commit perubahan, lakukan **Reboot** pada aplikasi Streamlit Cloud."
-                )
-                st.stop()
-
-    # Setelah aman, buat folder yang belum tersedia.
-    for folder in folder_list:
-        try:
-            os.makedirs(folder, exist_ok=True)
-        except FileExistsError:
-            st.error(
-                "🚫 **FileExistsError:** nama yang dibutuhkan sebagai folder "
-                f"sudah dipakai oleh file: **`{folder}`**.\n\n"
-                "Periksa kembali struktur repository GitHub."
-            )
-            st.stop()
-        except PermissionError:
-            st.error(
-                "🚫 Aplikasi tidak memiliki izin untuk membuat folder "
-                f"**`{folder}`**. Periksa struktur repository dan deployment Streamlit."
-            )
-            st.stop()
+        os.makedirs(folder, exist_ok=True)
 
 
 buat_folder()
-
 
 DEFAULT_STATE = {
     "mode": None,
