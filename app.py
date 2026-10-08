@@ -276,19 +276,6 @@ inject_css()
 # FOLDER & SESSION
 # =========================================================
 
-def buat_folder():
-    for folder in [
-        FOLDER_MATERI,
-        FOLDER_PERANGKAT,
-        FOLDER_LATIHAN,
-        FOLDER_REMEDIAL,
-        FOLDER_PENGAYAAN,
-        FOLDER_HASIL,
-    ]:
-        os.makedirs(folder, exist_ok=True)
-
-
-buat_folder()
 
 DEFAULT_STATE = {
     "mode": None,
