@@ -1,22 +1,12 @@
-config/
-└── pembelajaran.json
 {
-    "nama_aplikasi": "AI Tutor Bahasa Indonesia",
     "mata_pelajaran": "Bahasa Indonesia",
-    "materi_utama": "Teks Laporan Hasil Observasi",
     "kelas": "VIII",
     "fase": "D",
-    "kurikulum": "Kurikulum Merdeka",
-    "pendekatan": "Pembelajaran Mendalam",
-    "sekolah": "UPT SMPN 38 Medan",
-    "deskripsi": "Media pembelajaran digital berbantuan AI untuk membantu siswa mempelajari teks laporan hasil observasi.",
-    "fitur": [
-        "Materi",
-        "Tanya AI",
-        "Latihan",
-        "Remedial",
-        "Pengayaan",
-        "Media/Evaluasi",
-        "Hasil Siswa"
+    "materi": "Teks Laporan Hasil Observasi",
+    "tujuan_pembelajaran": [
+        "Memahami pengertian teks laporan hasil observasi",
+        "Mengidentifikasi struktur teks laporan hasil observasi",
+        "Mengidentifikasi kaidah kebahasaan teks laporan hasil observasi",
+        "Menyusun teks laporan hasil observasi berdasarkan hasil pengamatan"
     ]
 }
