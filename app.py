@@ -284,10 +284,6 @@ def buat_folder():
         FOLDER_REMEDIAL,
         FOLDER_PENGAYAAN,
         FOLDER_HASIL,
-        FOLDER_CONFIG,
-        FOLDER_GAMBAR,
-        FOLDER_VIDEO,
-        FOLDER_MEDIA,
     ]:
         os.makedirs(folder, exist_ok=True)
 
