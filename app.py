@@ -277,22 +277,13 @@ inject_css()
 # =========================================================
 
 def buat_folder():
-    """Membuat folder aplikasi dan melaporkan benturan dengan file secara jelas."""
-
-    folder_list = [
-        FOLDER_DATABASE,
+    for folder in [
         FOLDER_MATERI,
         FOLDER_PERANGKAT,
         FOLDER_LATIHAN,
         FOLDER_REMEDIAL,
-        FOLDER_PENGAYAAN,
-        FOLDER_HASIL,
-        FOLDER_ASSETS,
-        FOLDER_GAMBAR,
-        FOLDER_VIDEO,
-        FOLDER_MEDIA,
-        FOLDER_CONFIG,
-    ]
+        FOLDER_PENGAYAAN
+    ]:
 
     # Periksa seluruh bagian path sebelum membuat folder.
     # Contoh: jika "database" ternyata file, aplikasi akan langsung
