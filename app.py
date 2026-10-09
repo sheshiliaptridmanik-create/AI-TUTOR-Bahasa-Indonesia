@@ -295,6 +295,22 @@ def buat_folder():
 
 buat_folder()
 
+# PEMERIKSAAN DATABASE SEMENTARA
+with st.expander("Pemeriksaan Database Materi"):
+    st.write("Lokasi kerja aplikasi:", os.getcwd())
+    st.write("Lokasi folder materi:", os.path.abspath(FOLDER_MATERI))
+    st.write("Folder materi ditemukan:", os.path.isdir(FOLDER_MATERI))
+
+    if os.path.isdir(FOLDER_MATERI):
+        st.write("Daftar file dalam folder:", os.listdir(FOLDER_MATERI))
+
+    data_uji = baca_file_txt(FOLDER_MATERI)
+    st.write("Jumlah file TXT yang berhasil dibaca:", len(data_uji))
+
+    for item in data_uji:
+        st.write("Nama file:", item["nama_file"])
+        st.write("Jumlah karakter:", len(item["isi"]))
+
 DEFAULT_STATE = {
     "mode": None,
     "nama_siswa": "",
