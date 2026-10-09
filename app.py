@@ -336,21 +336,28 @@ for key, value in DEFAULT_STATE.items():
 
 def baca_file_txt(folder):
     data = []
-    if not os.path.exists(folder):
-        return data
-    for nama_file in sorted(os.listdir(folder)):
-        if not nama_file.lower().endswith(".txt"):
-            continue
-        path = os.path.join(folder, nama_file)
-        try:
-            with open(path, "r", encoding="utf-8") as file:
-                isi = file.read().strip()
-            if isi:
-                data.append({"nama_file": nama_file, "isi": isi})
-        except Exception:
-            continue
-    return data
 
+    if not os.path.isdir(folder):
+        return data
+
+    for nama_file in sorted(os.listdir(folder)):
+        if nama_file.lower().endswith(".txt"):
+            path = os.path.join(folder, nama_file)
+
+            try:
+                with open(path, "r", encoding="utf-8") as file:
+                    isi = file.read().strip()
+
+                if isi:
+                    data.append({
+                        "nama_file": nama_file,
+                        "isi": isi
+                    })
+
+            except OSError as e:
+                st.warning(f"Gagal membaca {nama_file}: {e}")
+
+    return data
 
 def baca_json(path, default):
     if not os.path.exists(path):
