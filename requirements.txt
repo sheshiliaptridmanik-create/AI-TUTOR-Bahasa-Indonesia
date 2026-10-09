@@ -1,2 +1,1 @@
-Streamlit
-openai
+streamlit>=1.48.0,<2.0
