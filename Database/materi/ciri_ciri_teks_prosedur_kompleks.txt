@@ -1,4 +1,4 @@
-Teks Prosedur Kompleks memiliki karakteristik khas yang membedakannya dari 
+{Teks Prosedur Kompleks memiliki karakteristik khas yang membedakannya dari 
 jenis teks prosedur lainnya, yaitu:
 
 1. Memiliki Sub-Langkah (Berjenjang)
@@ -19,4 +19,4 @@ jenis teks prosedur lainnya, yaitu:
 
 5. Menggunakan Penomoran atau Penandaan Berhierarki
    Penggunaan sistem nomor, abjad, atau poin untuk memisahkan tingkatan aksi 
-   dari tingkat umum ke tingkat khusus.
+   dari tingkat umum ke tingkat khusus.}
