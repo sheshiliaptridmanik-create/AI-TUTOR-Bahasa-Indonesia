@@ -1,0 +1,26 @@
+{
+"judul": "AI Tutor Bahasa Indonesia",
+"kelas": "XII",
+"mata_pelajaran": "Bahasa Indonesia",
+
+"media": [
+    {
+        "nama": "ISIIII",
+        "url": "ISIIII YAA BESTIE"
+    }
+],
+
+"evaluasi": [
+    {
+        "nama": "ISIIIII",
+        "platform": "ISIII",
+        "url": "ISIII"
+    },
+    {
+        "nama": "Evaluasi Google Forms",
+        "platform": "Google Forms",
+        "url": "ISIII"
+    }
+]
+
+}
