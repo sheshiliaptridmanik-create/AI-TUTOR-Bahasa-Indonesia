@@ -277,18 +277,19 @@ inject_css()
 # =========================================================
 
 def buat_folder():
-    for folder in [
+    folders = [
+        FOLDER_DATABASE,
         FOLDER_MATERI,
         FOLDER_PERANGKAT,
         FOLDER_LATIHAN,
         FOLDER_REMEDIAL,
         FOLDER_PENGAYAAN,
-        FOLDER_HASIL,
-        FOLDER_CONFIG,
         FOLDER_GAMBAR,
         FOLDER_VIDEO,
         FOLDER_MEDIA,
-    ]:
+    ]
+
+    for folder in folders:
         os.makedirs(folder, exist_ok=True)
 
 
