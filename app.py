@@ -352,13 +352,43 @@ with st.expander("Pemeriksaan Database Materi"):
     if os.path.isdir(FOLDER_MATERI):
         st.write("Daftar file dalam folder:", os.listdir(FOLDER_MATERI))
 
-    data_uji = baca_file_txt(FOLDER_MATERI)
-    st.write("Jumlah file TXT yang berhasil dibaca:", len(data_uji))
+
+# =========================================================
+# PENGUJIAN PEMBACAAN FILE MATERI
+# =========================================================
+
+data_uji = []
+
+if os.path.isdir(FOLDER_MATERI):
+    for nama_file in os.listdir(FOLDER_MATERI):
+        if nama_file.lower().endswith(".txt"):
+            path_file = os.path.join(FOLDER_MATERI, nama_file)
+
+            try:
+                with open(path_file, "r", encoding="utf-8") as file:
+                    isi = file.read()
+
+                data_uji.append({
+                    "nama_file": nama_file,
+                    "isi": isi
+                })
+
+            except (OSError, UnicodeError) as e:
+                st.warning(f"Gagal membaca {nama_file}: {e}")
+
+    st.write(
+        "Jumlah file TXT yang berhasil dibaca:",
+        len(data_uji)
+    )
 
     for item in data_uji:
         st.write("Nama file:", item["nama_file"])
-        st.write("Jumlah karakter:", len(item["isi"]))
-
+        st.write("Isi materi:", item["isi"][:300])
+else:
+    st.warning(
+        f"Folder materi tidak ditemukan: {FOLDER_MATERI}"
+    )
+    
 def baca_json(path, default):
     if not os.path.exists(path):
         return default
