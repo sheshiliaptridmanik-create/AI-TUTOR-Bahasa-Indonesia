@@ -267,7 +267,8 @@ def inject_css():
         """,
         unsafe_allow_html=True,
     )
-    
+
+
 inject_css()
 
 
@@ -505,38 +506,27 @@ def pasang_latihan_lama(data):
 
 
 def baca_perangkat_data():
-    """Sinkronkan TXT GitHub ke katalog tanpa menghapus data guru."""
     materi_txt = baca_file_txt(FOLDER_MATERI)
-    data = baca_json(FILE_PERANGKAT_DATA, {"materi": []})
-    data = normalisasi_perangkat(data)
-    berubah = not os.path.exists(FILE_PERANGKAT_DATA)
 
-    for item in materi_txt:
-        nama = os.path.splitext(item["nama_file"])[0]
-        judul = re.sub(r"[_-]+", " ", nama).strip().title()
-        identitas = re.sub(r"[^a-z0-9]+", "-", judul.lower()).strip("-")
-        cocok = next(
-            (x for x in data["materi"]
-             if x.get("id") == identitas or x.get("judul", "").casefold() == judul.casefold()),
-            None,
-        )
-        if cocok is None:
-            baru = template_materi(judul=judul, data={
-                "id": id_baru(judul, data),
-                "deskripsi": f"Materi pembelajaran {judul}.",
-                "materi": item["isi"],
-            })
-            data["materi"].append(baru)
-            berubah = True
-        elif cocok.get("materi") != item["isi"]:
-            cocok["materi"] = item["isi"]
-            berubah = True
-
-    if berubah:
+    if not os.path.exists(FILE_PERANGKAT_DATA):
+        data = {"materi": buat_migrasi_materi_terpisah(materi_txt)}
         pasang_latihan_lama(data)
-        simpan_perangkat_data(data)
-    return data
+        simpan_json(FILE_PERANGKAT_DATA, data)
+        return normalisasi_perangkat(data)
 
+    data = baca_json(FILE_PERANGKAT_DATA, {"materi": []})
+    if not isinstance(data, dict):
+        data = {"materi": []}
+
+    # Perbaikan database versi sebelumnya yang pernah menggabungkan
+    # semua file TXT menjadi satu materi bernama "Materi Lanjutan".
+    judul = [str(x.get("judul", "")).strip().lower() for x in data.get("materi", []) if isinstance(x, dict)]
+    if materi_txt and len(judul) == 1 and judul[0] == "materi lanjutan":
+        data["materi"] = buat_migrasi_materi_terpisah(materi_txt)
+        pasang_latihan_lama(data)
+        simpan_json(FILE_PERANGKAT_DATA, data)
+
+    return normalisasi_perangkat(data)
 
 def simpan_perangkat_data(data):
     simpan_json(FILE_PERANGKAT_DATA, normalisasi_perangkat(data))
@@ -717,20 +707,38 @@ def token_pertanyaan(pertanyaan):
 
 
 def ai_documents():
-    """Prioritaskan file TXT sebagai satu-satunya sumber jawaban jika tersedia."""
-    txt = baca_file_txt(FOLDER_MATERI)
-    if txt:
-        return [
-            {"judul": re.sub(r"[_-]+", " ", os.path.splitext(x["nama_file"])[0]).title(),
-             "bagian": "Materi", "isi": x["isi"]}
-            for x in txt
-        ]
+    documents = []
+
+    # TXT lama. Nama file hanya dipakai sebagai metadata internal, bukan output.
+    for item in baca_file_txt(FOLDER_MATERI):
+        documents.append(
+            {
+                "judul": os.path.splitext(item["nama_file"])[0],
+                "bagian": "Materi",
+                "isi": item["isi"],
+            }
+        )
+
     data = baca_perangkat_data()
-    return [
-        {"judul": x.get("judul", "Materi Bahasa Indonesia"), "bagian": "Materi",
-         "isi": str(x.get("materi", "")).strip()}
-        for x in data.get("materi", []) if str(x.get("materi", "")).strip()
+    fields = [
+        ("cp", "Capaian Pembelajaran"),
+        ("tp", "Tujuan Pembelajaran"),
+        ("modul", "Modul"),
+        ("materi", "Materi"),
+        ("penilaian", "Penilaian"),
     ]
+    for topik in data.get("materi", []):
+        for key, label in fields:
+            isi = str(topik.get(key, "")).strip()
+            if isi:
+                documents.append(
+                    {
+                        "judul": topik.get("judul", "Materi Bahasa Indonesia"),
+                        "bagian": label,
+                        "isi": isi,
+                    }
+                )
+    return documents
 
 
 def bersihkan_jawaban(teks):
@@ -1371,13 +1379,6 @@ def halaman_hasil_guru():
 # =========================================================
 
 def katalog_materi_siswa(materi):
-    with st.expander("🔎 Pemeriksaan materi (buka jika materi belum muncul)"):
-        st.write("Folder materi:", os.path.abspath(FOLDER_MATERI))
-        st.write("Folder ditemukan:", os.path.isdir(FOLDER_MATERI))
-        st.write("File TXT terbaca:", [x["nama_file"] for x in baca_file_txt(FOLDER_MATERI)])
-        st.write("Jumlah topik dalam katalog:", len(materi))
-        st.write("Judul dalam katalog:", [x.get("judul", "") for x in materi])
-        st.write("File JSON perangkat ditemukan:", os.path.isfile(FILE_PERANGKAT_DATA))
     st.markdown('<div class="section-title">📚 Pilih Materi Bahasa Indonesia</div>', unsafe_allow_html=True)
     st.caption("Setiap materi berdiri sendiri. Isi materi belum dibuka sampai kamu memilih satu materi.")
     if not materi:
@@ -1722,12 +1723,13 @@ def halaman_media():
             render_media(item, i)
 
     config = baca_json(FILE_CONFIG, {})
-    # Hanya entri "media" yang merupakan media; identitas sekolah bukan URL.
     if isinstance(config, dict):
-        for i, item in enumerate(config.get("media", []), start=1):
-            if isinstance(item, (str, dict)) and normalize_media(item).get("url"):
-                found = True
-                render_media(item, i)
+        for name, value in config.items():
+            values = value if isinstance(value, list) else [value]
+            for i, link in enumerate(values, start=1):
+                if isinstance(link, str) and link.strip():
+                    found = True
+                    render_media({"judul": str(name) if len(values) == 1 else f"{name} {i}", "tipe": "auto", "url": link.strip()}, i)
 
     if not found:
         empty_state("Belum ada media/evaluasi yang ditambahkan guru.")
