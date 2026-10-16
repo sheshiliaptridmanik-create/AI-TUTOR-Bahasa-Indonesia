@@ -46,7 +46,8 @@ FILE_LATIHAN_LAMA = os.path.join(FOLDER_LATIHAN, "latihan_lho.txt")
 # =========================================================
 
 def inject_css():
-    st.markdown("""
+    st.markdown(
+        ""
         <style>
         .stApp {
             background:
