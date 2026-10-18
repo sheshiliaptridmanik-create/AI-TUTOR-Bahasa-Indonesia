@@ -1285,7 +1285,7 @@ def editor_perangkat_guru(data, topik):
                 st.success("Latihan berhasil disimpan.")
 
     elif section == "media":
-    editor_media(data, topik)
+        editor_media(data, topik)
         if st.button("💾 Simpan media", use_container_width=True, key=f"tg_media_save_{topik['id']}"):
             simpan_perangkat_data(data)
             st.success("Media berhasil disimpan.")
