@@ -5,22 +5,25 @@
 
 "media": [
     {
-        "nama": "ISIIII",
-        "url": "ISIIII YAA BESTIE"
+        "nama": "Video Pembelajaran Teks Prosedur Kompleks",
+        "url": "https://youtu.be/dHMHIpLrqmg?si=ayf5Ay8Vnlqybpwt"
+    },
+    {
+        "nama": "contoh Video teks prosedur"
+        "url" : "https://youtu.be/l0nimoUl2No?si=ZLQ1aoHPuR16H-xE"
     }
 ],
 
 "evaluasi": [
     {
-        "nama": "ISIIIII",
-        "platform": "ISIII",
-        "url": "ISIII"
+        "nama": "Evaluasi Soal Interaktif Wordwall",
+        "platform": "wordwall",
+        "url": "https://wordwall.net/resource/63748620/teks-prosedur?utm_source=chatgpt.com"
     },
     {
-        "nama": "Evaluasi Google Forms",
-        "platform": "Google Forms",
-        "url": "ISIII"
+        "nama": "Evaluasi soal interaktif Quizizz",
+        "platform": "Wayground",
+        "url": "https://wayground.com/admin/quiz/64968743915b92001d30cad7/soal-pg-teks-prosedur?source=quiz_share"
     }
 ]
-
 }
