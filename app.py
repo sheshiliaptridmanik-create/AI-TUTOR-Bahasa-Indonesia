@@ -1116,41 +1116,105 @@ def editor_soal(topik, index, prefix):
     soal["pembahasan"] = st.text_area("Pembahasan", soal.get("pembahasan", ""), height=85, key=f"{prefix}_exp_{index}")
 
 
-def editor_media(topik):
-    current = [normalize_media(x) for x in topik.get("media", [])]
+def editor_media(data, topik):
+    current = [
+        normalize_media(x)
+        for x in topik.get("media", [])
+    ]
     new_media = []
 
-    st.caption("Pilih auto agar aplikasi mengenali URL video/gambar secara otomatis. URL YouTube dikenali sebagai video.")
-    for i, item in enumerate(current):
-        with st.expander(f"Media {i + 1} • {item.get('judul', 'Media')}"):
-            c1, c2, c3 = st.columns([1, 1.1, 2])
-            with c1:
-                tipe = st.selectbox("Jenis", ["auto", "video", "gambar", "link"], index=["auto", "video", "gambar", "link"].index(item.get("tipe", "auto")) if item.get("tipe", "auto") in ["auto", "video", "gambar", "link"] else 0, key=f"mt_{topik['id']}_{i}")
-            with c2:
-                judul = st.text_input("Judul", item.get("judul", "Media"), key=f"mj_{topik['id']}_{i}")
-            with c3:
-                source = st.text_input("URL / nama file", item.get("url", ""), key=f"mu_{topik['id']}_{i}")
-            new_media.append({"judul": judul, "tipe": tipe, "url": source})
+    st.caption(
+        "Masukkan URL YouTube, Wordwall, Wayground, Flipbook, "
+        "Google Forms, atau nama file media lokal."
+    )
 
-    with st.form(f"new_media_form_{topik['id']}", clear_on_submit=True):
-        st.markdown("**＋ Tambah media**")
+    for i, item in enumerate(current):
+        with st.expander(
+            f"Media {i + 1} • {item.get('judul', 'Media')}"
+        ):
+            c1, c2, c3 = st.columns([1, 1.1, 2])
+
+            with c1:
+                pilihan_tipe = ["auto", "video", "gambar", "link"]
+                tipe_lama = item.get("tipe", "auto")
+                indeks = (
+                    pilihan_tipe.index(tipe_lama)
+                    if tipe_lama in pilihan_tipe
+                    else 0
+                )
+                tipe = st.selectbox(
+                    "Jenis",
+                    pilihan_tipe,
+                    index=indeks,
+                    key=f"mt_{topik['id']}_{i}",
+                )
+
+            with c2:
+                judul = st.text_input(
+                    "Judul",
+                    item.get("judul", "Media"),
+                    key=f"mj_{topik['id']}_{i}",
+                )
+
+            with c3:
+                source = st.text_input(
+                    "URL / nama file",
+                    item.get("url", ""),
+                    key=f"mu_{topik['id']}_{i}",
+                )
+
+            new_media.append({
+                "judul": judul.strip() or "Media",
+                "tipe": tipe,
+                "url": source.strip(),
+            })
+
+    with st.form(
+        f"new_media_form_{topik['id']}",
+        clear_on_submit=True,
+    ):
+        st.markdown("**＋ Tambah media baru**")
+
         c1, c2, c3 = st.columns([1, 1.1, 2])
+
         with c1:
-            tipe = st.selectbox("Jenis", ["auto", "video", "gambar", "link"])
+            tipe_baru = st.selectbox(
+                "Jenis media",
+                ["auto", "video", "gambar", "link"],
+            )
+
         with c2:
-            judul = st.text_input("Judul")
+            judul_baru = st.text_input("Judul media")
+
         with c3:
-            source = st.text_input("URL / nama file")
-        submit = st.form_submit_button("Tambahkan", use_container_width=True)
+            source_baru = st.text_input("URL / nama file media")
+
+        submit = st.form_submit_button(
+            "＋ Tambahkan dan Simpan",
+            use_container_width=True,
+        )
 
     if submit:
-        if source.strip():
-            new_media.append({"judul": judul.strip() or "Media", "tipe": tipe, "url": source.strip()})
-            topik["media"] = new_media
-            return True
-    topik["media"] = new_media
-    return False
+        if not source_baru.strip():
+            st.warning("Masukkan URL atau nama file media terlebih dahulu.")
+        else:
+            # Pertahankan media lama sekaligus menyimpan perubahan edit.
+            new_media.append({
+                "judul": judul_baru.strip() or "Media",
+                "tipe": tipe_baru,
+                "url": source_baru.strip(),
+            })
 
+            topik["media"] = new_media
+
+            # Simpan langsung ke JSON, bukan hanya ke tampilan.
+            simpan_perangkat_data(data)
+
+            st.success("Media berhasil ditambahkan dan disimpan.")
+            st.rerun()
+
+    # Tetap perbarui perubahan pada media lama.
+    topik["media"] = new_media
 
 def editor_perangkat_guru(data, topik):
     st.markdown(
@@ -1221,7 +1285,7 @@ def editor_perangkat_guru(data, topik):
                 st.success("Latihan berhasil disimpan.")
 
     elif section == "media":
-        editor_media(topik)
+    editor_media(data, topik)
         if st.button("💾 Simpan media", use_container_width=True, key=f"tg_media_save_{topik['id']}"):
             simpan_perangkat_data(data)
             st.success("Media berhasil disimpan.")
